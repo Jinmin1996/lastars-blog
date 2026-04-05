@@ -1,8 +1,10 @@
 {
   "build": {
+    "command": "npm run build",
     "output": "public"
   },
   "install": {
-    "cache": ".npm"
-  }
+    "command": "npm install"
+  },
+  "framework": "hexo"
 }
