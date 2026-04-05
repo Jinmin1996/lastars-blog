@@ -3,8 +3,5 @@
     "command": "npm run build",
     "output": "public"
   },
-  "install": {
-    "command": "npm install"
-  },
   "framework": "hexo"
 }
