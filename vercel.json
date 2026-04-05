@@ -1,7 +1,6 @@
 {
-  "build": {
-    "command": "npm run build",
-    "output": "public"
-  },
-  "framework": "hexo"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "hexo",
+  "buildCommand": "npm run build",
+  "outputDirectory": "public"
 }
