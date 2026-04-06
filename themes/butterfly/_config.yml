@@ -16,11 +16,11 @@ nav:
   fixed: false
 
 menu:
-  首页: / || fas fa-home
-  文章归档: /archives/ || fas fa-archive
-  标签: /tags/ || fas fa-tags
-  分类: /categories/ || fas fa-folder
-  关于: /about/ || fas fa-user
+  首页: / || fas fa-house
+  大赛排名: /ranking/ || fas fa-trophy
+  账户详情: /account/ || fas fa-chart-line
+  文章: /archives/ || fas fa-book-open
+  关于: /about/ || fas fa-user-astronaut
 
 # --------------------------------------
 # Code Blocks Settings
@@ -65,7 +65,7 @@ disable_top_img: false
 default_top_img:
 
 # The banner image of index page
-index_img:
+index_img: false
 
 # The banner image of archive page
 archive_img:
@@ -94,7 +94,7 @@ background: '#0a0a0a'
 
 cover:
   # Disable the cover or not
-  index_enable: true
+  index_enable: false
   aside_enable: true
   archives_enable: true
   # When cover is not set, the default cover is displayed

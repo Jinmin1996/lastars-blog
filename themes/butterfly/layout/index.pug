@@ -1,5 +1,139 @@
 extends includes/layout.pug
 
 block content
-  include ./includes/mixins/indexPostUI.pug
-  +indexPostUI
+  -
+    const orbitCards = [
+      {
+        title: '首页',
+        href: url_for('/'),
+        icon: 'fas fa-house',
+        kicker: '主星',
+        summary: '回到主星，浏览最近的站点更新。',
+        angle: '-92deg',
+        distance: '10rem',
+        size: '8rem',
+        delay: '-2s'
+      },
+      {
+        title: '大赛排名',
+        href: url_for('/ranking/'),
+        icon: 'fas fa-trophy',
+        kicker: '赛事轨道',
+        summary: '后续接入期货日报实盘大赛排名。',
+        angle: '-18deg',
+        distance: '14rem',
+        size: '7.4rem',
+        delay: '-10s'
+      },
+      {
+        title: '账户详情',
+        href: url_for('/account/'),
+        icon: 'fas fa-chart-line',
+        kicker: '账户轨道',
+        summary: '后续展示你的实盘账户详情与曲线。',
+        angle: '54deg',
+        distance: '11.5rem',
+        size: '7.1rem',
+        delay: '-16s'
+      },
+      {
+        title: '文章',
+        href: url_for('/archives/'),
+        icon: 'fas fa-book-open',
+        kicker: '文库轨道',
+        summary: '沉淀复盘、文章和交易记录。',
+        angle: '132deg',
+        distance: '13.5rem',
+        size: '7.3rem',
+        delay: '-7s'
+      },
+      {
+        title: '关于',
+        href: url_for('/about/'),
+        icon: 'fas fa-user-astronaut',
+        kicker: '人物轨道',
+        summary: '查看你的介绍、理念与联系方式。',
+        angle: '196deg',
+        distance: '9.6rem',
+        size: '6.9rem',
+        delay: '-13s'
+      }
+    ]
+  #lastars-home
+    section.lastars-hero
+      .lastars-hero__copy
+        p.lastars-hero__eyebrow LASTARS.CN
+        h1.lastars-hero__title= config.title
+        p.lastars-hero__lead= config.description
+        .lastars-hero__meta
+          span
+            i.fas.fa-satellite-dish
+            |  紫金星云配色保留
+          span
+            i.fas.fa-stars
+            |  行星导航已接管首页
+        .lastars-hero__actions
+          a.button--purple(href=url_for('/about/'))
+            i.fas.fa-user-astronaut
+            span 先看关于
+          a.button--ghost(href=url_for('/archives/'))
+            i.fas.fa-book-open
+            span 浏览文章
+      .orbitarium
+        .orbitarium__halo.orbitarium__halo--inner
+        .orbitarium__halo.orbitarium__halo--middle
+        .orbitarium__halo.orbitarium__halo--outer
+        .orbitarium__system
+          .orbitarium__core
+            span.orbitarium__core-mark
+            strong= config.author
+            small 交易宇宙
+          each item in orbitCards
+            a.orbitarium__planet(
+              href=item.href
+              title=item.summary
+              style=`--planet-angle:${item.angle};--planet-distance:${item.distance};--planet-size:${item.size};--orbit-delay:${item.delay};`
+            )
+              span.orbitarium__planet-shell
+                span.orbitarium__planet-surface
+                  i(class=item.icon)
+                  strong= item.title
+                  small= item.kicker
+    section.lastars-panel-grid
+      article.lastars-panel
+        p.lastars-panel__eyebrow 板块一
+        h2 首页
+        p 首页现在改成了宇宙入口，5 个行星就是 5 个主板块，后面可以继续替换文案、动效和背景。
+        a(href=url_for('/')) 返回主星
+      article.lastars-panel
+        p.lastars-panel__eyebrow 板块二
+        h2 大赛排名
+        p 这个板块先保留独立入口，官方比赛数据接入已经暂缓，后续我们再把实时排名接上来。
+        a(href=url_for('/ranking/')) 查看占位页
+      article.lastars-panel
+        p.lastars-panel__eyebrow 板块三
+        h2 账户详情
+        p 账户详情页也先留好入口，等你准备继续接比赛数据时，我直接把字段挂进去。
+        a(href=url_for('/account/')) 查看占位页
+      article.lastars-panel
+        p.lastars-panel__eyebrow 板块四
+        h2 文章
+        p 这里继续保留博客内容沉淀，适合写复盘、策略笔记、交易心得和每周总结。
+        a(href=url_for('/archives/')) 打开文章归档
+      article.lastars-panel
+        p.lastars-panel__eyebrow 板块五
+        h2 关于
+        p 关于页和头像都还保留可编辑入口，后面你可以很方便地自己替换介绍内容。
+        a(href=url_for('/about/')) 打开关于页
+    section.lastars-recent
+      .lastars-section-heading
+        p.lastars-section-heading__eyebrow 最新文章
+        h2.lastars-section-heading__title 文章星图
+        p.lastars-section-heading__desc 这里继续展示你的文章列表，首页只是换成了更像个人主场的入口方式。
+      if page.posts && page.posts.data && page.posts.data.length
+        include ./includes/mixins/indexPostUI.pug
+        +indexPostUI()
+      else
+        .lastars-empty
+          h3 还没有更多文章
+          p 你现在可以先把首页搭起来，之后再慢慢补内容。

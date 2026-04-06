@@ -20,3 +20,4 @@ Thumbs.db
 # Hexo
 .cache/
 debug.log
+.vercel
