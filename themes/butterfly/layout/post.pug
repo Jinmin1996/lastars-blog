@@ -1,6 +1,8 @@
 extends includes/layout.pug
 
 block content
+  - const isProtectedPost = config.lastars_access && config.lastars_access.enabled && page.protected !== false && page.access !== 'public'
+  - const postSlug = decodeURIComponent((page.slug || page.path || '').replace(/\/?index\.html$/, '').replace(/^\/+|\/+$/g, ''))
   #post
     if top_img === false
       include includes/header/post-info.pug
@@ -8,6 +10,10 @@ block content
     article#article-container.container.post-content
       if theme.noticeOutdate.enable && page.noticeOutdate !== false
         include includes/post/outdate-notice.pug
+      if isProtectedPost
+        .lastars-protected-post(data-protected-post data-post-slug=postSlug)
+          p.lastars-protected-post__state(data-protected-post-state) 正在检查访问权限...
+          .lastars-protected-post__content(data-protected-post-content hidden)
       else
         !=page.content
     include includes/post/post-copyright.pug

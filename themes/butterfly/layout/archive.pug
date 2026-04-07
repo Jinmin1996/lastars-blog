@@ -1,8 +1,11 @@
 extends includes/layout.pug
 
 block content
-  include ./includes/mixins/article-sort.pug
+  include ./includes/mixins/lastars-article-list.pug
   #archive
-    .article-sort-title= `${_p('page.articles')} - ${getArchiveLength()}`
-    +articleSort(page.posts)
+    .lastars-archive-intro
+      p / 你必须准备好沐浴在你自身的烈焰中
+      p / 你怎么可能重生呢
+      p / 如果你不先化为灰烬
+    +lastarsArticleList(page.posts)
     include includes/pagination.pug

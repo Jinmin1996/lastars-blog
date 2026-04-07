@@ -1,16 +1,20 @@
 if theme.Open_Graph_meta.enable
   -
     const coverVal = page.cover_type === 'img' ? page.cover : theme.avatar.img
+    const isProtectedPost = config.lastars_access && config.lastars_access.enabled && globalPageType === 'post' && page.protected !== false && page.access !== 'public'
+    const safeDescription = isProtectedPost ? (page.description || page.title || config.description) : (page.description || page.excerpt || page.title || config.description)
     let ogOption = Object.assign({
       type: globalPageType === 'post' ? 'article' : 'website',
       image: coverVal ? full_url_for(coverVal) : '',
+      description: safeDescription,
       fb_admins: theme.facebook_comments.user_id || '',
       fb_app_id: theme.facebook_comments.app_id || '',
     }, theme.Open_Graph_meta.option)
   -
   != open_graph(ogOption)
 else
-  - const description = page.description || page.content || page.title || config.description
+  - const isProtectedPost = config.lastars_access && config.lastars_access.enabled && globalPageType === 'post' && page.protected !== false && page.access !== 'public'
+  - const description = isProtectedPost ? (page.description || page.title || config.description) : (page.description || page.content || page.title || config.description)
   if description
     meta(name="description" content=truncate(description, 150))
 

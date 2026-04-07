@@ -1,0 +1,16 @@
+mixin lastarsArticleList(posts)
+  - const entries = posts && posts.data ? posts.data : posts
+  if entries && entries.length
+    .lastars-article-list
+      each article in entries
+        - const title = article.title || _p('no_title')
+        - const categories = article.categories && article.categories.data ? article.categories.data : []
+        - const category = categories.length ? categories[0] : null
+        article.lastars-article-row
+          time.lastars-article-row__date(datetime=full_date(article.date))= date(article.date, config.date_format)
+          h2.lastars-article-row__title
+            a(href=url_for(article.path) title=title)= title
+          if category
+            a.lastars-article-row__category(href=url_for(category.path))= category.name
+          else
+            span.lastars-article-row__category= config.default_category || '碎碎念'

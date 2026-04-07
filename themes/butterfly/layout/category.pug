@@ -5,8 +5,8 @@ block content
     include ./includes/mixins/indexPostUI.pug
     +indexPostUI
   else
-    include ./includes/mixins/article-sort.pug
+    include ./includes/mixins/lastars-article-list.pug
     #category
       .article-sort-title= _p('page.category') + ' - ' + page.category
-      +articleSort(page.posts)
+      +lastarsArticleList(page.posts)
       include includes/pagination.pug

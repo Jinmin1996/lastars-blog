@@ -1,4 +1,9 @@
 - const { nav, owner, copyright, custom_text } = theme.footer
+- const allPosts = site.posts && site.posts.data ? site.posts.data : []
+- const totalPosts = allPosts.length
+- const totalChars = allPosts.reduce((sum, post) => sum + strip_html(post.content || '').replace(/\s+/g, '').length, 0)
+- const postText = totalPosts.toLocaleString('zh-CN')
+- const charText = totalChars.toLocaleString('zh-CN')
 
 if nav
   .footer-flex
@@ -16,6 +21,15 @@ if nav
                 else if subitem.title
                   div!= subitem.title
 .footer-other
+  p.lastars-footer-stats
+    span.lastars-footer-stats__slash /
+    | 目前，#{config.author}共计完成 #{postText} 篇文章、#{charText} 个字
+    if theme.busuanzi.site_pv
+      span#busuanzi_container_site_pv
+        | ，已迎来
+        span#busuanzi_value_site_pv
+        |  次星际来访
+    | 。
   .footer-copyright
     if owner.enable
       - const currentYear = new Date().getFullYear()

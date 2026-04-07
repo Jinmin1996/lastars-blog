@@ -4,6 +4,19 @@
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
 - var pageType = globalPageType === 'post' ? 'post' : 'page'
 - pageType = page.type ? pageType + ' type-' + page.type : pageType
+- const normalizePath = input => {
+-   let normalized = String(input || '/')
+-   if (!normalized.startsWith('/')) normalized = `/${normalized}`
+-   normalized = normalized.replace(/index\.html$/, '')
+-   normalized = normalized.replace(/\/+/g, '/')
+-   if (normalized !== '/' && !normalized.endsWith('/')) normalized += '/'
+-   return normalized || '/'
+- }
+- const currentPath = is_home ? '/' : normalizePath(page.path)
+- const brandConfig = config.lastars_brand || {}
+- const brandEnglish = brandConfig.english_title || 'LASTARS BLOG'
+- const brandChinese = brandConfig.chinese_title || config.title
+- const brandSubtitle = brandConfig.subtitle || config.description
 
 doctype html
 html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside)
@@ -38,22 +51,53 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
           })()
 
     !=partial('includes/sidebar', {}, {cache: true})
+    #lastars-access-root
+    #lastars-site-shell
+      aside.lastars-rail
+        .lastars-rail__brand
+          a.lastars-rail__title(href=url_for('/'))
+            span.lastars-brandmark__en
+              span.lastars-brandmark__slash /
+              span.lastars-brandmark__label= brandEnglish
+              span.lastars-brandmark__slash /
+            span.lastars-brandmark__zh= brandChinese
+          p.lastars-rail__subtitle= brandSubtitle
+        if theme.menu
+          nav.lastars-rail__nav
+            each value, label in theme.menu
+              if typeof value !== 'object'
+                - const [link] = value.split('||').map(part => trim(part))
+                - const href = normalizePath(url_for(link))
+                - const isActive = href === '/' ? currentPath === '/' : currentPath.indexOf(href) === 0
+                a.lastars-rail__link(class=isActive ? 'is-active' : '' href=url_for(link))= label
+        .lastars-rail__meta
+          p.lastars-rail__meta-label 作者
+          p.lastars-rail__meta-value= config.author
+          .lastars-rail__stats
+            a.lastars-rail__stat(href=`${url_for(config.archive_dir)}/`)
+              strong= site.posts.length
+              span 文章
+            a.lastars-rail__stat(href=`${url_for(config.category_dir)}/`)
+              strong= site.categories.length
+              span 分类
+            a.lastars-rail__stat(href=`${url_for(config.tag_dir)}/`)
+              strong= site.tags.length
+              span 标签
+      #body-wrap(class=pageType)
+        include ./header/index.pug
+        .lastars-site-main
+          main#content-inner.layout(class=hideAside)
+            if body
+              div!= body
+            else
+              block content
+              if theme.aside.enable && page.aside !== false
+                include widget/index.pug
 
-    #body-wrap(class=pageType)
-      include ./header/index.pug
-
-      main#content-inner.layout(class=hideAside)
-        if body
-          div!= body
-        else
-          block content
-          if theme.aside.enable && page.aside !== false
-            include widget/index.pug
-
-      - const footerBg = theme.footer_img
-      - const footer_bg = footerBg ? footerBg === true ? bg_img : getBgPath(footerBg) : ''
-      footer#footer(style=footer_bg)
-        !=partial('includes/footer', {}, {cache: true})
+          - const footerBg = theme.footer_img
+          - const footer_bg = footerBg ? footerBg === true ? bg_img : getBgPath(footerBg) : ''
+          footer#footer(style=footer_bg)
+            !=partial('includes/footer', {}, {cache: true})
 
     include ./rightside.pug
     include ./additional-js.pug

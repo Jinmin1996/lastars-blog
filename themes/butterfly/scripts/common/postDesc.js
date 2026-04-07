@@ -8,11 +8,18 @@ const truncateContent = (content, length, encrypt = false) => {
   return truncate(stripHTML(content).replace(/\n/g, ' '), { length })
 }
 
+const isProtectedPost = data => data && data.protected !== false && data.access !== 'public'
+
 // Generates a post description based on the provided data and theme configuration.
 const postDesc = (data, hexo) => {
   const { description, content, postDesc, encrypt } = data
 
   if (postDesc) return postDesc
+
+  if (isProtectedPost(data)) {
+    data.postDesc = description || ''
+    return data.postDesc
+  }
 
   const { length, method } = hexo.theme.config.index_post_content
 

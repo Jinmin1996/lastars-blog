@@ -1,5 +1,8 @@
 -
   const titleVal = pageTitle.replace(/'/ig,"\\'")
+  const accessConfig = JSON.stringify(config.lastars_access || {})
+  const accessPagePath = String(page.path || '')
+  const requiresAccess = Boolean(config.lastars_access && config.lastars_access.enabled && ((globalPageType === 'post' && page.protected !== false && page.access !== 'public') || accessPagePath === 'admin/index.html'))
 
   let isHighlightShrink
   if (theme.code_blocks.shrink == 'none') isHighlightShrink = 'undefined'
@@ -12,7 +15,7 @@
     if (globalPageType === 'post' && theme.toc.post) tocEnable = true
     else if (globalPageType === 'page' && theme.toc.page) tocEnable = true
     const pageToc = typeof page.toc === 'boolean' ? page.toc : tocEnable
-    showToc = pageToc && (toc(page.content) !== '' || page.encrypt === true)
+    showToc = !requiresAccess && pageToc && (toc(page.content) !== '' || page.encrypt === true)
   }
 -
 
@@ -21,5 +24,10 @@ script#config-diff.
     title: '!{titleVal}',
     isHighlightShrink: !{isHighlightShrink},
     isToc: !{showToc},
-    pageType: '!{page.type == 'shuoshuo' ? 'shuoshuo' : globalPageType}'
+    pageType: '!{page.type == 'shuoshuo' ? 'shuoshuo' : globalPageType}',
+    requiresAccess: !{requiresAccess}
+  }
+  window.LASTARS_ACCESS_CONFIG = !{accessConfig}
+  if (window.LASTARS_ACCESS_CONFIG && window.LASTARS_ACCESS_CONFIG.enabled && GLOBAL_CONFIG_SITE.requiresAccess) {
+    document.documentElement.classList.add('lastars-access-pending')
   }

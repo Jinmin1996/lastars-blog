@@ -13,14 +13,11 @@ nav:
   logo:
   display_title: true
   display_post_title: true
-  fixed: false
+  fixed: true
 
 menu:
-  首页: / || fas fa-house
-  大赛排名: /ranking/ || fas fa-trophy
-  账户详情: /account/ || fas fa-chart-line
-  文章: /archives/ || fas fa-book-open
-  关于: /about/ || fas fa-user-astronaut
+  文章: /
+  关于: /about/
 
 # --------------------------------------
 # Code Blocks Settings
@@ -45,8 +42,6 @@ code_blocks:
 # Formal:
 #   icon: link || the description || color
 social:
-  # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
-  # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
 
 # --------------------------------------
 # Image Settings
@@ -55,7 +50,7 @@ social:
 favicon: /img/favicon.png
 
 avatar:
-  img: /img/butterfly-icon.png
+  img: /img/个人头像.jpg
   effect: false
 
 # Disable all banner images
@@ -90,7 +85,7 @@ category_per_img:
 footer_img: false
 
 # Website Background
-background: '#0a0a0a'
+background: false
 
 cover:
   # Disable the cover or not
@@ -197,7 +192,7 @@ toc:
   scroll_percent: true
 
 post_copyright:
-  enable: true
+  enable: false
   decode: false
   author_href:
   license: CC BY-NC-SA 4.0
@@ -225,7 +220,7 @@ post_edit:
 
 # Related Articles
 related_post:
-  enable: true
+  enable: false
   # Number of posts displayed
   limit: 6
   # Choose: created / updated
@@ -235,7 +230,7 @@ related_post:
 # 1: The 'next post' will link to old post
 # 2: The 'next post' will link to new post
 # false: disable pagination
-post_pagination: 1
+post_pagination: false
 
 # Displays outdated notice for a post
 noticeOutdate:
@@ -259,8 +254,8 @@ footer:
     since: 2025
   # Copyright of theme and framework
   copyright:
-    enable: true
-    version: true
+    enable: false
+    version: false
   custom_text:
 
 # --------------------------------------
@@ -268,11 +263,11 @@ footer:
 # --------------------------------------
 
 aside:
-  enable: true
+  enable: false
   hide: false
   # Show the button to hide the aside in bottom right button
-  button: true
-  mobile: true
+  button: false
+  mobile: false
   # Position: left / right
   position: right
   display:
@@ -281,15 +276,15 @@ aside:
     category: true
   card_author:
     enable: true
-    description:
+    description: 交易记录、实盘观察与会员订阅
     button:
-      enable: true
+      enable: false
       icon: fab fa-github
       text: Follow Me
       link: https://github.com/xxxxxx
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: 订阅新文章、查看交易记录与会员更新。
   card_recent_post:
     enable: true
     # If set 0 will show all
@@ -373,13 +368,13 @@ translate:
   msgToSimplifiedChinese: '簡'
 
 # Read Mode
-readmode: true
+readmode: false
 
 # Dark Mode
 darkmode:
-  enable: true
+  enable: false
   # Toggle Button to switch dark/light mode
-  button: true
+  button: false
   # Switch dark/light mode automatically
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
@@ -436,9 +431,9 @@ wordcount:
 
 # Busuanzi count for PV / UV in site
 busuanzi:
-  site_uv: true
+  site_uv: false
   site_pv: true
-  page_pv: true
+  page_pv: false
 
 # --------------------------------------
 # Math
@@ -509,7 +504,7 @@ search:
 share:
   # Choose: sharejs / addtoany
   # Leave it empty if you don't need share
-  use: sharejs
+  use:
 
   # Share.js
   # https://github.com/overtrue/share.js
@@ -753,21 +748,21 @@ site_verification:
 # Theme color for customize
 theme_color:
   enable: true
-  main: "#7c3aed"
-  paginator: "#8b5cf6"
-  button_hover: "#a78bfa"
-  text_selection: "#7c3aed"
-  link_color: "#a78bfa"
-  meta_color: "#9ca3af"
-  hr_color: "#7c3aed"
-  code_foreground: "#c4b5fd"
-  code_background: "rgba(124, 58, 237, 0.1)"
-  toc_color: "#a78bfa"
-  blockquote_padding_color: "#7c3aed"
-  blockquote_background_color: "#7c3aed"
-  scrollbar_color: "#7c3aed"
-  meta_theme_color_light: "ffffff"
-  meta_theme_color_dark: "#0d0d0d"
+  main: "#111111"
+  paginator: "#111111"
+  button_hover: "#2b2b2b"
+  text_selection: "#111111"
+  link_color: "#111111"
+  meta_color: "#777777"
+  hr_color: "#111111"
+  code_foreground: "#111111"
+  code_background: "rgba(17, 17, 17, 0.06)"
+  toc_color: "#111111"
+  blockquote_padding_color: "#111111"
+  blockquote_background_color: "#111111"
+  scrollbar_color: "#111111"
+  meta_theme_color_light: "#f7f7f3"
+  meta_theme_color_dark: "#111111"
 
 # The user interface setting of category and tag page
 # Choose: index - same as Homepage UI / default - same as archives UI
@@ -817,13 +812,13 @@ beautify:
 font:
   global_font_size:
   code_font_size:
-  font_family:
-  code_font_family:
+  font_family: '"PingFang SC", "Hiragino Sans GB", "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif'
+  code_font_family: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace'
 
 # Font settings for the site title and site subtitle
 blog_title_font:
   font_link:
-  font_family:
+  font_family: '"Iowan Old Style", "Palatino Linotype", "Noto Serif SC", Georgia, serif'
 
 # The setting of divider icon
 hr_icon:
@@ -1055,7 +1050,8 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/style.css">
   bottom:
-    # - <script src="xxxx"></script>
+    - <script src="/js/access.js"></script>
+    - <script src="/js/site.js"></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work

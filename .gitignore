@@ -21,3 +21,9 @@ Thumbs.db
 .cache/
 debug.log
 .vercel
+.env*.local
+site-accounts.json
+site-issued-accounts.json
+site-newsletter-log.json
+site-purchases.json
+site-subscribers.json

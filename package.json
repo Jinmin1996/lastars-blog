@@ -3,15 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "accounts:generate": "node tools/generate-accounts.mjs",
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
+    "newsletter:sync": "node tools/sync-newsletter.cjs",
+    "publish": "node tools/publish.cjs",
     "server": "hexo server"
   },
   "hexo": {
     "version": "8.1.1"
   },
   "dependencies": {
+    "@upstash/redis": "^1.35.3",
+    "gray-matter": "^4.0.3",
     "hexo": "^8.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
@@ -22,7 +27,8 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-theme-butterfly": "^5.5.4",
-    "hexo-theme-landscape": "^1.0.0"
+    "hexo-theme-landscape": "^1.0.0",
+    "marked": "^16.3.0"
   },
   "engines": {
     "node": "22.x"

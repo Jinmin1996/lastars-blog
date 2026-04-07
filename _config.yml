@@ -1,27 +1,27 @@
 # Hexo Configuration
-## Docs: https://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
+# Documentation: https://hexo.io/docs/configuration.html
+# Source: https://github.com/hexojs/hexo/
 
 # Site
 title: 赫西的遗星
 subtitle: ''
-description: 交易记录与心得分享
+description: 交易记录、实盘观察与会员订阅
+lastars_brand:
+  english_title: LASTARS BLOG
+  chinese_title: 赫西的遗星
+  subtitle: 实盘记录 / 交易心得 / 日常分享
 keywords:
   - 交易
   - 投资
   - 博客
+  - 会员订阅
 author: 赫西
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
-## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://lastars.cn
 permalink: :title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -34,74 +34,113 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :title.md
 default_layout: post
-titlecase: false # Transform title into titlecase
+titlecase: false
 external_link:
-  enable: true # Open external links in new tab
-  field: site # Apply to the whole site
+  enable: true
+  field: site
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
-future: true
-syntax_highlighter: highlight.js
+future: false
 highlight:
+  enable: true
   line_number: true
-  auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
-prismjs:
-  preprocess: true
-  line_number: true
-  tab_replace: ''
 
 # Home page setting
-# path: Root path for your blogs index page. (default = '')
-# per_page: Posts displayed per page. (0 = disable pagination)
-# order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
   per_page: 10
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: 碎碎念
 category_map:
 tag_map:
 
 # Metadata elements
-## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
 
 # Date / Time format
-## Hexo uses Moment.js to parse and display date
-## You can customize the date format as defined in
-## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
-## updated_option supports 'mtime', 'date', 'empty'
 updated_option: 'mtime'
 
 # Pagination
-## Set per_page to 0 to disable pagination
 per_page: 10
 pagination_dir: page
 
 # Include / Exclude file(s)
-## include:/exclude: options only apply to the 'source/' folder
 include:
 exclude:
 ignore:
 
 # Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
 theme: butterfly
 
+# Paid access settings
+lastars_access:
+  enabled: true
+  site_label: LASTARS
+  login_title: LASTARS 私享会员
+  login_subtitle: 使用已开通账号登录。未开通可点击购买会员查看套餐。
+  helper_text: 输入账号密码登录。
+  button_text: 开通咨询
+  badge_text: 微信 / 支付宝
+  contact_title: 购买会员
+  contact_hint: 选择套餐与支付方式，完成付款后点击“已支付”，我会收到邮件并手动开通。
+  contact_wechat_id: JM2YZX
+  contact_note: 提交后我会收到你的付款信息，并手动授权访问权限。
+  purchase_template: 你好，我已支付 {plan_name}，请帮我开通 LASTARS 会员账号。
+  plans:
+    - id: monthly
+      name: 月度会员
+      price: ¥299
+      period: /月
+      description: 适合先体验站内内容和更新节奏。
+      features:
+        - 站内文章阅读
+        - 交易观察记录
+        - 会员通知
+    - id: yearly
+      name: 年度会员
+      price: ¥2599
+      period: /年
+      badge: 推荐
+      recommended: true
+      description: 适合长期跟踪内容与持续更新。
+      features:
+        - 站内文章阅读
+        - 交易观察记录
+        - 会员通知
+        - 节奏复盘分享
+        - 长周期陪伴
+    - id: lifetime
+      name: 终身会员
+      price: ¥8999
+      period: /永久
+      description: 适合明确认可内容方向的长期用户。
+      features:
+        - 全部会员内容
+        - 长期更新访问权
+        - 深度复盘整理
+        - 优先获得新功能体验
+  wechat:
+    label: 微信支付
+    qr_image: /img/微信支付.jpg
+  alipay:
+    label: 支付宝
+    qr_image: /img/支付宝支付.jpg
+
 # Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
