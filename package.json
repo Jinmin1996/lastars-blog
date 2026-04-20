@@ -28,7 +28,7 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-butterfly": "^5.5.4",
     "hexo-theme-landscape": "^1.0.0",
-    "marked": "^16.3.0"
+    "marked": "^18.0.2"
   },
   "engines": {
     "node": "22.x"
